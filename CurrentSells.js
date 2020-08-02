@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { stockData } from "./selectedProductsData";
 import { Grid, Row, Col } from "react-native-easy-grid";
-
-export const CurrentSells = () => {
-  const [count, setCount] = useState(0);
-
-  const calclatPrice = (productPrice) => {
-    setCount(count + productPrice);
-  };
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+export const CurrentSells = (props) => {
   return (
     <View
       style={{
@@ -32,12 +27,14 @@ export const CurrentSells = () => {
       </View>
       <View style={{ flex: 1 }}>
         <ScrollView>
-          {stockData.map((data, key) => {
+          {props.SelectedProducts.map((data, key) => {
             return (
               <TouchableOpacity
                 style={{ flex: 1, height: 80, paddingHorizontal: 20 }}
                 key={key}
-                onPress={() => calclatPrice(data.ProductPrice)}
+                onPress={() =>
+                  props.pressHandler(data.ProductName, data.ProductPrice)
+                }
               >
                 <Grid>
                   <Col size={1}>
@@ -83,9 +80,41 @@ export const CurrentSells = () => {
           backgroundColor: "#3498db",
         }}
       >
-        <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
-          {"Charge DZD " + count}
-        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              height: 60,
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ fontSize: 25, color: "white", fontWeight: "bold" }}>
+              {"Charge DZD " + props.count}
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={{ justifyContent: "center" }}
+            onPress={() => props.deleteAll()}
+            //onPress={() => props.deleteAll()}
+          >
+            <View
+              style={{
+                height: 60,
+                justifyContent: "center",
+                padding: 5,
+              }}
+            >
+              <MaterialCommunityIcons name="delete" size={38} color="white" />
+            </View>
+          </TouchableOpacity>
+        </View>
       </TouchableOpacity>
     </View>
   );
