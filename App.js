@@ -20,15 +20,43 @@ export default function App() {
     // });
     console.log("add");
   };
+
+  const [AllCategory, setAllCategory] = useState([
+    { ProductName: "fruit", ProductPrice: 170 },
+    { ProductName: "yoghurt", ProductPrice: 25 },
+
+    { ProductName: "vegetables", ProductPrice: 170 },
+    { ProductName: "legumes", ProductPrice: 25 },
+
+    { ProductName: "noodles", ProductPrice: 170 },
+    { ProductName: "poultry", ProductPrice: 25 },
+  ]);
+
   const [AllProducts, setAllProducts] = useState([
     { ProductName: "Coca cola", ProductPrice: 170 },
-    { ProductName: "Coca cola", ProductPrice: 170 },
+    { ProductName: "ifri", ProductPrice: 25 },
 
-    { ProductName: "Coca cola", ProductPrice: 170 },
+    { ProductName: "nutella", ProductPrice: 1500 },
 
-    { ProductName: "Coca cola", ProductPrice: 170 },
+    { ProductName: "couscous", ProductPrice: 190 },
 
+    { ProductName: "activia", ProductPrice: 65 },
     { ProductName: "Coca cola", ProductPrice: 170 },
+    { ProductName: "ifri", ProductPrice: 25 },
+
+    { ProductName: "nutella", ProductPrice: 1500 },
+
+    { ProductName: "couscous", ProductPrice: 190 },
+
+    { ProductName: "activia", ProductPrice: 65 },
+    { ProductName: "Coca cola", ProductPrice: 170 },
+    { ProductName: "ifri", ProductPrice: 25 },
+
+    { ProductName: "nutella", ProductPrice: 1500 },
+
+    { ProductName: "couscous", ProductPrice: 190 },
+
+    { ProductName: "activia", ProductPrice: 65 },
   ]);
 
   const [currentScreen, setCurrentScreen] = useState();
@@ -38,7 +66,9 @@ export default function App() {
   };
 
   const openCategorys = () => {
-    setCurrentScreen(<Categorys />);
+    setCurrentScreen(
+      <Categorys AllCategory={AllCategory} add={submitHandler} />
+    );
   };
 
   const openDiscounts = () => {
